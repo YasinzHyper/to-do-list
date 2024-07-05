@@ -51,7 +51,7 @@ nav {
     flex: 2;
     display: flex;
     align-items: center;
-    justify-content:flex-end;
+    justify-content: flex-end;
     background-color: inherit;
     height: 100%;
 
@@ -64,14 +64,14 @@ nav {
       margin: 20px;
     }
 
-    .user{
+    .user {
       display: flex;
-    //   width: 100%;
+      //   width: 100%;
       align-items: center;
       justify-content: space-between;
       font-weight: bold;
 
-      img{
+      img {
         width: 40px;
         height: 40px;
         border-radius: 50%;
@@ -81,42 +81,28 @@ nav {
 
       .username {
         margin-left: 20px;
+        font-size: 22px;
       }
 
-      span{
+      span {
         // margin-left: 20px;
-        @include sm{
+        @include sm {
           display: none;
         }
       }
 
-      .profile{
+      .profile {
         padding: 12px 20px;
-        background-color: #fece51;
+        background-color: teal;
+        // margin-left: 20px;
         cursor: pointer;
         border: none;
         position: relative;
-        
-        .notification{
-          position: absolute;
-          top: -8px;
-          right: -8px;
-          background-color: rgb(233, 68, 68);
-          color: white;
-          border-radius: 50%;
-          font-size: 12px;
-          width: 22px;
-          height: 22px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
       }
     }
 
     .register {
-      background-color: #fece51;
+      background-color: teal;
     }
 
     .menuIcon {

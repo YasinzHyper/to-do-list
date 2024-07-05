@@ -1,12 +1,25 @@
 import { useContext, useState } from "react";
 import "./NavBar.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import apiRequest from "../../lib/apiRequest.js";
 function NavBar() {
   const [open, setOpen] = useState(false);
 
-  const {currentUser} = useContext(AuthContext);
-    // const currentUser = false;
+  const { updateUser, currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await apiRequest.post("/auth/logout");
+      // localStorage.removeItem("user")
+      updateUser(null);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // const currentUser = false;
   // const user = true;
   return (
     <nav>
@@ -25,10 +38,11 @@ function NavBar() {
               src={currentUser.avatar || "/noavatar.jpg"}
               alt="user"
             /> */}
-            <span className="username">{currentUser.username}</span>
-            <Link className="profile" to="/profile">
-              <div className="notification">3</div>
-              <span>Profile</span>
+            <span className="username">Hi {currentUser.username}!</span>
+            <Link>
+              <button className="profile" onClick={handleLogout}>
+                <span>Logout</span>
+              </button>
             </Link>
           </div>
         ) : (
@@ -43,8 +57,8 @@ function NavBar() {
           <img src="/menu.png" alt="menu" onClick={() => setOpen(!open)} />
         </div>
         <div className={open ? "menu active" : "menu"}>
-        <a href="/">Home</a>
-        <a href="/">Tasks</a>
+          <a href="/">Home</a>
+          <a href="/">Tasks</a>
         </div>
       </div>
     </nav>

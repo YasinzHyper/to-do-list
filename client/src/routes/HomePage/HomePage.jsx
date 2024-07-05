@@ -9,6 +9,17 @@ function HomePage() {
 //   console.log(data);
   const [newTask, setNewTask] = useState("");
   const isEditing = false;
+
+  
+
+  async function handleEdit() {
+    // apiRequest.put();
+  }
+
+  async function handleDelete() {
+
+  }
+
   return (
     <TaskList data={data} newTask={newTask} setNewTask={setNewTask} isEditing={isEditing}/>
   );
