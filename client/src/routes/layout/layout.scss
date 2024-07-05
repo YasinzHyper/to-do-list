@@ -1,0 +1,38 @@
+@import '../../responsive.scss';
+
+.layout {
+    // background-color: rebeccapurple;
+    background-color: #1a1a1a;
+
+    height: 100vh;
+    width: 100%;
+    max-width: 1066px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+
+    @include lg {
+        // background-color: rgb(255, 255, 255);
+        // background-color: #1a1a1a;
+
+        max-width: 1080px;
+    }
+
+    @include md {
+        // background-color: rgb(255, 255, 255);
+        max-width: 768px;
+    }
+
+    @include sm {
+        // background-color: rgb(255, 255, 255);
+        max-width: 640px;
+    }
+
+    .content {
+        height: calc(100vh - 100px);
+        // flex: 1;
+    }
+}
