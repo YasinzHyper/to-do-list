@@ -3,15 +3,30 @@ import prisma from "../lib/prisma.js";
 export const addTask = async (req, res) => {
   const body = req.body;
   const tokenUserId = req.userId;
-
+  const { title, description, categoryId } = body;
   try {
-    const newTask = await prisma.task.create({
-      data: {
-        ...body,
-        userId: tokenUserId,
-      },
-    });
-    res.status(200).json(newTask);
+    if (categoryId === 1) {
+      const newTask = await prisma.task.create({
+        data: {
+          title,
+          description,
+          completed: false,
+          userId: tokenUserId,
+        },
+      });
+      res.status(200).json(newTask);
+    } else {
+      const newTask = await prisma.task.create({
+        data: {
+          title,
+          description,
+          categoryId,
+          completed: false,
+          userId: tokenUserId,
+        },
+      });
+      res.status(200).json(newTask);
+    }
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Failed to add task" });
@@ -76,7 +91,7 @@ export const updateTask = async (req, res) => {
   const inputs = req.body;
 
   try {
-    taskUserId = await prisma.task.findUnique({
+    const taskUserId = await prisma.task.findUnique({
       where: {
         id: id,
       },
@@ -96,6 +111,7 @@ export const updateTask = async (req, res) => {
       data: inputs,
     });
     // const { password: userPassword, ...rest } = updatedUser;
+    console.log("task updated successfully!");
     res.status(200).json(updatedTask);
   } catch (error) {
     console.log(error);
@@ -106,9 +122,11 @@ export const updateTask = async (req, res) => {
 export const deleteTask = async (req, res) => {
   const id = req.params.id;
   const tokenUserId = req.userId;
+  console.log("deleted task: " + id);
+  // console.log(tokenUserId);
 
   try {
-    taskUserId = await prisma.task.findUnique({
+    const taskUserId = await prisma.task.findUnique({
       where: {
         id: id,
       },
