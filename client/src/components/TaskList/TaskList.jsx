@@ -99,74 +99,79 @@ function TaskList(props) {
       {props.data.length === 0 ? <p>No tasks added yet!</p> : null}
       <ul>
         {props.data.map((task) => (
-          <li
-            key={task.id}
-            className="flex justify-between items-center mb-2 p-2 border rounded"
-          >
-            {isEditing ? (
-              <>
-                <input
-                  type="text"
-                  defaultValue={task.title}
-                  id={"new-title-" + task.id}
-                  name="new-title"
-                  //   onBlur={(e) => handleEdit(data.id, e.target.value)}
-                  className="border p-2 rounded w-full"
-                />
-                <input
-                  type="text"
-                  defaultValue={task.description}
-                  id={"new-description-" + task.id}
-                  name="new-description"
-                  //   onBlur={(e) => handleEdit(data.id, e.target.value)}
-                  className="border p-2 rounded w-full"
-                />
-                <button
-                  onClick={() => {
-                    isEditing ? setIsEditing(false) : setIsEditing(true);
-                    const newTitle = document.getElementById(
-                      "new-title-" + task.id
-                    ).value;
-                    const newDescription = document.getElementById(
-                      "new-description-" + task.id
-                    ).value;
-                    handleEdit(task.id, {
-                      title: newTitle,
-                      description: newDescription,
-                    });
-                  }}
-                  className="ml-2 bg-green-500 text-white p-2 rounded"
-                >
-                  Save
-                </button>
-              </>
-            ) : (
-              <>
-                <div className="flex flex-4 flex-col justify-start items-start">
-                  <h2 className="font-semibold text-l">{task.title}</h2>
-                  <hr />
-                  <p className="text-ellipsis text-start">{task.description}</p>
-                </div>
+          <>
+            <li
+              key={task.id}
+              className="flex justify-between items-center mb-2 p-2 border rounded"
+            >
+              {isEditing ? (
+                <>
+                  <input
+                    type="text"
+                    defaultValue={task.title}
+                    id={"new-title-" + task.id}
+                    name="new-title"
+                    //   onBlur={(e) => handleEdit(data.id, e.target.value)}
+                    className="border p-2 rounded w-full"
+                  />
+                  <input
+                    type="text"
+                    defaultValue={task.description}
+                    id={"new-description-" + task.id}
+                    name="new-description"
+                    //   onBlur={(e) => handleEdit(data.id, e.target.value)}
+                    className="border p-2 rounded w-full"
+                  />
+                  <button
+                    onClick={() => {
+                      isEditing ? setIsEditing(false) : setIsEditing(true);
+                      const newTitle = document.getElementById(
+                        "new-title-" + task.id
+                      ).value;
+                      const newDescription = document.getElementById(
+                        "new-description-" + task.id
+                      ).value;
+                      handleEdit(task.id, {
+                        title: newTitle,
+                        description: newDescription,
+                      });
+                    }}
+                    className="ml-2 bg-green-500 text-white p-2 rounded"
+                  >
+                    Save
+                  </button>
+                </>
+              ) : (
+                <>
+                  <div className="flex flex-4 flex-col justify-start items-start">
+                    <h2 className="font-semibold text-l">{task.title}</h2>
+                    <hr />
+                    <p className="text-ellipsis text-start">
+                      {task.description}
+                    </p>
+                    <p className="text-start text-sm text-gray-400">{(new Date(task.createdAt)).toLocaleString()}</p>
+                  </div>
 
-                <div className="flex align-center justify-end">
-                  <button
-                    onClick={() =>
-                      isEditing ? setIsEditing(false) : setIsEditing(true)
-                    }
-                    className="mr-2 bg-yellow-500 text-white p-2 rounded"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(task.id)}
-                    className="bg-red-500 text-white p-2 rounded"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </>
-            )}
-          </li>
+                  <div className="flex align-center justify-end">
+                    <button
+                      onClick={() =>
+                        isEditing ? setIsEditing(false) : setIsEditing(true)
+                      }
+                      className="mr-2 bg-yellow-500 text-white p-2 rounded"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(task.id)}
+                      className="bg-red-500 text-white p-2 rounded"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </>
+              )}
+            </li>
+          </>
         ))}
       </ul>
     </div>

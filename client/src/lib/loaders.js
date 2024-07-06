@@ -3,7 +3,7 @@ import apiRequest from "./apiRequest.js";
 export const homePageLoader = async ({ request, params }) => {
   const res1 = await apiRequest.get("/tasks/");
   const res2 = await apiRequest.get("/categories");
-  return { tasks: res1.data, categories: res2.data };
+  return { tasks: res1.data.reverse(), categories: res2.data };
 };
 
 //   export const listPageLoader = async ({ request, params }) => {
