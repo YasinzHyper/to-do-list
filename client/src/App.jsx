@@ -18,14 +18,6 @@ function App() {
           element: <HomePage />,
           loader: homePageLoader,
         },
-        // {
-        //   path: "/profile/update",
-        //   element: <ProfileUpdate />,
-        // },
-        // {
-        //   path: "/add-task",
-        //   element: <NewTaskPage />,
-        // },
       ],
     },
     {
