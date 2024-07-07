@@ -1,5 +1,10 @@
 A Full-Stack To-Do List Application built using MERN stack.
 
+<div align="center">
+  <img src="https://github.com/YasinzHyper/to-do-list/assets/113431400/897f0a89-0497-4ec5-96d5-2bd7d9da3515" />
+  <img src="https://github.com/YasinzHyper/to-do-list/assets/113431400/0d7ddef7-3bc1-424a-8e54-763bfa6d02f9" />
+</div>
+
 ## Steps to run
 
 1. Clone/fork the repository.
@@ -29,4 +34,5 @@ npm run dev
 **Tech Stack**
 
 Backend: JavaScript, Nodejs, Expressjs, Prisma(MongoDB).
-Frontend: React, Vite, Sass.
+
+Frontend: React, Vite, Sass, Tailwind CSS.
