@@ -36,6 +36,9 @@ export const addTask = async (req, res) => {
 export const getTasks = async (req, res) => {
   try {
     // console.log(req.userId);
+    if (req.userId==null) {
+      return res.status(200).json({});
+    }
     const tasks = await prisma.task.findMany({
       where: { userId: req.userId },
       include: {

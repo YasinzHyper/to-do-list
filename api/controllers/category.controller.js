@@ -19,9 +19,11 @@ export const addCategory = async (req, res) => {
 };
 
 export const getCategories = async (req, res) => {
+  const tokenUserId = req.userId;
+  // console.log(tokenUserId);
   try {
     const categories = await prisma.category.findMany({
-      where: { userId: req.userId },
+      where: { userId: tokenUserId },
       include:{
         tasks: true,
       }

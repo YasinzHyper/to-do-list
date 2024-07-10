@@ -27,6 +27,8 @@ function TaskCategories({ onCategoryChange, items }) {
     });
     navigate("/");
     setNewCategory(false);
+    // console.log(res)
+    setCategories([...categories, res]);
   };
 
   return (

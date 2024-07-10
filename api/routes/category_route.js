@@ -6,7 +6,7 @@ const categoryRouter = express.Router();
 
 categoryRouter.post("/", verifyToken, addCategory);
 
-categoryRouter.get("/", getCategories);
+categoryRouter.get("/", verifyToken, getCategories);
 
 // categoryRouter.get("/:id", verifyToken, getcategory);
 
