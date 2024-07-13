@@ -11,17 +11,6 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <RequireAuth />,
-      children: [
-        {
-          path: "/",
-          element: <HomePage />,
-          loader: homePageLoader,
-        },
-      ],
-    },
-    {
-      path: "/",
       element: <Layout />,
       children: [
         {
@@ -31,6 +20,22 @@ function App() {
         {
           path: "/register",
           element: <Register />,
+        },
+        {
+          path: "/",
+          element: <HomePage />,
+          loader: homePageLoader,
+        },
+      ],
+    },
+    {
+      path: "/",
+      element: <RequireAuth />,
+      children: [
+        {
+          path: "/",
+          element: <HomePage />,
+          loader: homePageLoader,
         },
       ],
     },

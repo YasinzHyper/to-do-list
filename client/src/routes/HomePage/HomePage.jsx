@@ -1,23 +1,29 @@
-import { useLoaderData } from "react-router-dom";
-import apiRequest from "../../lib/apiRequest";
-import { useState } from "react";
+import { Navigate, useLoaderData } from "react-router-dom";
+// import apiRequest from "../../lib/apiRequest";
+import { useContext, useState } from "react";
 import TaskList from "../../components/TaskList/TaskList";
 import TaskCategories from "../../components/TaskCategories/TaskCategories";
+import { AuthContext } from "../../context/AuthContext";
 // import "./HomePage.scss";
 
 function HomePage() {
   const data = useLoaderData();
   //   console.log(data);
   // const [category, setCategory] = useState(data.categories[0]);
-  const [tasks, setTasks] = useState(data.tasks);
+  const { currentUser } = useContext(AuthContext);
+  if (!currentUser) return <Navigate to="/login" />;
 
+  const [tasks, setTasks] = useState(data.tasks);
+  
   async function handleCategoryChange(categoryId) {
     if (categoryId != 1) {
       try {
         // const res = await apiRequest.get("/tasks/category/" + categoryId);
         // setTasks(res.data);
         let filteredTasks = [...data.tasks];
-        filteredTasks = filteredTasks.filter((task) => task.categoryId==categoryId);
+        filteredTasks = filteredTasks.filter(
+          (task) => task.categoryId == categoryId
+        );
         setTasks(filteredTasks);
       } catch (error) {
         console.log(error);
@@ -33,7 +39,7 @@ function HomePage() {
         onCategoryChange={handleCategoryChange}
         items={data.categories}
       />
-      <TaskList data={tasks} categories={data.categories}/>
+      <TaskList data={tasks} categories={data.categories} />
     </>
   );
 }
